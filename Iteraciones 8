@@ -1,0 +1,62 @@
+function mostrar()
+{
+    var letra;
+    var numero;
+    var continuar;
+    var contpares = 0;
+    var contimpares = 0;
+    var contceros = 0;
+    var acumpositivos = 0;
+    var contpositivos = 0;
+    var acumnegativos = 0;
+    var promedio;
+    var numeromax;
+    var letramax;
+    var numeromin;
+    var letramin;
+    var flagmax = 1;
+    var flagmin = 1;
+
+    do{
+        letra = prompt("ingrese una letra");
+        do{
+           numero = parseInt(prompt("ingrese un numero entre el -100 y el 100")); 
+        }while(isNaN(numero) || numero<-100 || numero>100)//validar el numero ingresado
+        if(numero % 2 == 0){
+            contpares++;
+        }//contar los pares
+        else{
+            contimpares++;
+        }//contar los impares
+        if(numero == 0){
+            contceros++;
+        }//contar los ceros
+        if(numero>=0){
+            acumpositivos+=numero;
+            contpositivos++//acumula y cuenta los positivos
+        }else{
+            acumnegativos+=numero;//acumula los negativos
+        }
+        if(numero>numeromax || flagmax == 1){
+            numeromax = numero;
+            letramax = letra;
+            flagmax = 0; 
+        } //define numero mayor junto con su letra
+        if(numero<numeromin || flagmin == 1){
+            numeromin = numero;
+            letramin = letra;
+            flagmin = 0;
+        } //define numero menor junto con su letra
+        continuar = prompt("continuar ingresando? s/n"); 
+    }while(continuar == "s"); //el usuario decide cuando termina la carga
+    
+    promedio = acumpositivos/contpositivos;
+
+    document.write ("a) Cantidad de números pares: "+contpares+"<br>");
+    document.write ("b) Cantidad de números impares: "+contimpares+"<br>");
+    document.write ("c) Cantidad de ceros: "+contceros+"<br>");
+    document.write ("d) Promedio de numeros positivos: "+promedio+"<br>");
+    document.write ("e) Suma de numeros negativos: "+acumnegativos+"<br>");
+    document.write ("f) El numero mas alto ingresado es: "+numeromax+" con la letra: "+letramax+
+" y el numero mas bajo ingresado es: "+numeromin+" con la letra: "+letramin);
+}
